@@ -19,7 +19,6 @@ const gameBoard = (function () {
     let board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     const computerMark = "O";
     const humanMark = "X";
-    let currentMark = humanMark;
     const announcement = document.querySelector(".announcement");
     
 
@@ -234,14 +233,12 @@ setTimeout(displayWinner, 500)
             const moves = [];
             if (depth === 0) {
             availableSpots = emptyIndex();
-            console.log( "avail" + availableSpots[0] + availableSpots[1])} 
+            } 
         
             for (let i = 0; i < availableSpots.length; i++) {
                 let move = {};
                 move.index = availableSpots[i];
-                console.log(move.index)
                 
-        
                 if (maximizer) {
                     board[availableSpots[i]] = computerMark;
                     move.score = minimax(board, false, depth + 1, availableSpots);
@@ -264,11 +261,9 @@ setTimeout(displayWinner, 500)
                     if (moves[i].score > bestScore) {
                         bestScore = moves[i].score;
                         bestMove = i;
-                        console.log(i)
-                        console.log("best move ai:" + bestMove )
                     }
                 }
-                console.log(moves)
+                
             
                 
             } else {
@@ -277,13 +272,9 @@ setTimeout(displayWinner, 500)
                     if (moves[i].score < bestScore) {
                         bestScore = moves[i].score;
                         bestMove = i;
-                        console.log(i)
-                        console.log("best move hu:" + bestMove)
                     }
                 }
-                console.log(moves)
             
-                
             }
             
             return moves[bestMove]
@@ -296,7 +287,7 @@ setTimeout(displayWinner, 500)
         function AiMakeBestMove() {
             let depth = 0;
             emptyIndexArr = emptyIndex();
-            console.log("emp"+emptyIndexArr)
+            
             for (let i = 0; i < emptyIndexArr.length; i++) {
                 const index = emptyIndexArr[i];
                 board[index] = computerMark;
@@ -310,7 +301,7 @@ setTimeout(displayWinner, 500)
             }
             for (let i = 0; i < emptyIndexArr.length; i++) {
                 const index = emptyIndexArr[i];
-                console.log("index" + index)
+                
                 board[index] = humanMark;
                 if (checkResults(depth) === -10) {
                     board[index] = computerMark;
@@ -460,91 +451,7 @@ const displayGame = (function() {
 
 
 
-/*const computerGame = (function() {
-    let computerMark = "O"
-    let humanMark = "X"
-    let emptyIndexArr = [];
-    const AiFunctions = {
-        emptyIndex: function() {
-        emptyIndexArr = []
-        for(let i=0; i<gameBoard.board.length; i++) {
-            if(gameBoard.board[i] !== humanMark && gameBoard.board[i] !== computerMark) {
-            emptyIndexArr.push(i)}
-        }
-        return emptyIndexArr;
-    },
 
-    AiMakeRandomMove: function() {
-        AiFunctions.emptyIndex();
-        let randomMove = emptyIndexArr[(Math.floor(Math.random() * emptyIndexArr.length))];
-        gameBoard.board.splice(randomMove, 1, "O");
-    },
-
-    minimax: function(currentBoard, currentMark) {
-        gameBoard.playRound.checkWinner();
-        if(gameBoard.winPlayerTwo) {
-            return {score: 10}
-        }
-
-        else if (gameBoard.winPlayerOne) {
-            return {score: -10}
-        }
-
-        else if (gameBoard.itsADraw) {
-            return {score: 0}
-        }
-    const allPlayInfos = [];
-
-    for (let i = 0; i < emptyIndexArr.length; i++) {
-      const currentPlayInfo = []
-      currentPlayInfo.index = CurrentBoard[emptyIndexArr[i]];
-      currentBoard[emptyIndexArr[i]] = currentMark;
-
-      if (currentMark === computerMark) {
-        const result = minimax(currentBoard, humanMark);
-        currentPlayInfo.score = result.score;
-    } else {
-    
-        const result = minimax(currentBoard, computerMark);
-        currentPlayInfo.score = result.score;
-    }
-        currentBoard[emptyIndexArr[i]] = currentPlayInfo.index;
-        
-        allPlayInfos.push(currentPlayInfo);
-    }
-
-
-    
-    let bestMove = null;
-    
-    
-    if (currentMark === computerMark) {
-        let bestScore = -Infinity;
-        for (let i = 0; i < allPlayInfos.length; i++) {
-            if (allPlayInfos[i].score > bestScore) {
-                bestScore = allPlayInfos[i].score;
-                bestMove = i;
-            }
-        }
-    } else {
-        let bestScore = Infinity;
-        for (let i = 0; i < allPlayInfos.length; i++) {
-            if (allPlayInfos[i].score < bestScore) {
-                bestScore = allPlayInfos[i].score;
-                bestMove = i;
-            }
-        }
-    
-    }
-    return allTPlayInfos[bestMove];
-
-    }
-
-}
-
-    return { AiFunctions, emptyIndexArr }
-
-})(); */
 
 
 
