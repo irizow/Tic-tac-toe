@@ -26,6 +26,7 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: rgb(184, 255, 202);
+    text-align: center;
 }
 
 .playermode {
@@ -67,13 +68,23 @@ body {
     border: 3px solid rgb(255, 5, 255);
 }
 
+@media screen and (max-width: 750px) {
+    .playermode>div {
+        gap: 10px;
+    }
+    .playermode>div>button {
+        width: 150px;
+        font-size: 24px;
+    }
+}
+
 /* player selection page*/
 
 .twoplayerselection {
     border-radius: 20px;
     padding: 40px;
-    height: 40vh;
     width: 60vw;
+    height: 40vh;
     background: linear-gradient(
         to right,
         rgb(255, 219, 233) 0%,
@@ -83,11 +94,12 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 20%;
+    top: 25%;
     font-size: 34px;
     display: none;
 
 }
+
 
 form {
     width: 100%;
@@ -99,7 +111,7 @@ form {
 }
 
 form input {
-    width: 20vw;
+    width: 300px;
     height: 5vh;
     font-family: Gochi-hand, sans-serif;
     font-size: 28px;
@@ -126,6 +138,29 @@ form>div>div {
     font-family: Handjet, sans-serif;
     text-align: center;
 }
+
+@media screen and (max-width: 900px) {
+    .twoplayerselection {
+        height: 55vh;
+        top: auto;
+        bottom: 0;
+        width: 100vw;
+        background: linear-gradient(
+            to bottom,
+            rgb(255, 219, 233) 0%,
+            rgb(255, 219, 233) 50%,
+            rgb(206, 242, 242) 50%,
+            rgb(206, 242, 242) 100%);
+    }
+    form>div {
+        flex-direction: column;
+    }
+    form input {
+        width: 150px;
+    }
+    
+}
+
 
 
 /* GAME */
@@ -160,8 +195,8 @@ form>div>div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3,1fr);
-    width:650px;
-    height: 650px;
+    width:80vh;
+    height: 80vh;
     border: 2px solid black;
 }
 
@@ -194,6 +229,11 @@ hr {
     height: 50vh;
     border-radius: 25px;
     border: 1px solid black;
+    gap: 1rem;
+}
+
+.boxplayer>p {
+    margin: 0;
 }
 
 #boxplayer1 {
@@ -202,6 +242,40 @@ hr {
 
 #boxplayer2 {
     background-color: rgb(206, 242, 242);
+}
+
+@media screen and (max-width: 900px) {
+    .announcement {
+        width: 90vw;
+        height: 5vh;
+        margin-top: 0.5rem;
+    }
+    .game {
+        justify-content: flex-start;
+        gap: 1.5rem;
+    }
+    .boxplayer {
+        position: fixed;
+        bottom: 0;
+        font-size: 18px;
+        padding: 1rem 2rem;
+        width: auto;
+        height: auto;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    #boxplayer1 {
+        left: 2rem;
+    }
+    #boxplayer2 {
+        right: 2rem;
+    }
+    .container {
+        width: 90vw;
+        height: 90vw;
+    }
+    
 }
 
 /*Winner Pop Up*/
